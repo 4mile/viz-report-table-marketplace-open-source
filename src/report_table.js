@@ -205,8 +205,12 @@ const buildReportTable = function(config, dataTable, updateColumnOrder, element)
       .style('font-size', config.headerFontSize + 'px')
       .attr('draggable', true)
       .call(drag)
-      .on('mouseover', cell => dropTarget = cell)
-      .on('mouseout', () => dropTarget = null)
+      .on('mouseover', (cell) => {
+        dropTarget = cell || null
+      })
+      .on('mouseout', (cell) => {
+        dropTarget = cell || null
+      })
 
 
     var table_rows = table.append('tbody')
