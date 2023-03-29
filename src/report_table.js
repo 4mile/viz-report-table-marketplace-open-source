@@ -108,7 +108,7 @@ const buildReportTable = function(config, dataTable, updateColumnOrder, element)
 
     var drag = d3.drag()
       .on('start', (source, idx) => {
-        if (!dataTable.has_pivots && source.colspan === 1) { // if a headercell is a merged cell, can't tell which column its associated with
+        if (!dataTable.hasPivots && source.colspan === 1) { // if a headercell is a merged cell, can't tell which column its associated with
           var xPosition = parseFloat(d3.event.x);
           var yPosition = parseFloat(d3.event.y);
           var html = source.column.getHeaderCellLabelByType('field')
@@ -123,7 +123,7 @@ const buildReportTable = function(config, dataTable, updateColumnOrder, element)
       })
       .on('drag', (source, idx) => {
         // console.log('drag event', source, idx, d3.event.x, d3.event.y)
-        if (!dataTable.has_pivots) {
+        if (!dataTable.hasPivots) {
           d3.select("#tooltip") 
             .style("left", d3.event.x + "px")
             .style("top", d3.event.y + "px")  
@@ -131,7 +131,7 @@ const buildReportTable = function(config, dataTable, updateColumnOrder, element)
         
       })
       .on('end', (source, idx) => {
-        if (!dataTable.has_pivots) {
+        if (!dataTable.hasPivots) {
           d3.select("#tooltip").classed("hidden", true);
           var movingColumn = source.column
           var targetColumn = dropTarget.column
